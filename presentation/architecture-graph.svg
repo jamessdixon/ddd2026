@@ -1,0 +1,129 @@
+<svg viewBox="0 0 900 820" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+
+  <rect width="900" height="820" fill="#f3f6fb"/>
+
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#555"/>
+    </marker>
+    <!-- drop shadow -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000033"/>
+    </filter>
+  </defs>
+
+  <!-- ══════════════════════════════════════════
+       EDGES  (drawn before nodes so nodes sit on top)
+       ══════════════════════════════════════════ -->
+
+  <!-- Internet → Front Door -->
+  <line x1="450" y1="80" x2="450" y2="160" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Front Door → Web VM 1 -->
+  <line x1="390" y1="198" x2="222" y2="298" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Front Door → Web VM 2 -->
+  <line x1="510" y1="198" x2="678" y2="298" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Web VM 1 → App LB -->
+  <line x1="240" y1="342" x2="408" y2="428" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Web VM 2 → App LB -->
+  <line x1="660" y1="342" x2="492" y2="428" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- App LB → App VM 1 -->
+  <line x1="414" y1="472" x2="148" y2="558" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- App LB → App VM 2 -->
+  <line x1="436" y1="474" x2="336" y2="558" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- App LB → App VM 3 -->
+  <line x1="464" y1="474" x2="564" y2="558" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- App LB → App VM 4 -->
+  <line x1="486" y1="472" x2="752" y2="558" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- App VM 1 → Postgres Primary -->
+  <line x1="162" y1="602" x2="296" y2="698" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- App VM 2 → Postgres Primary -->
+  <line x1="338" y1="602" x2="316" y2="698" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- App VM 3 → Postgres Primary -->
+  <line x1="556" y1="602" x2="374" y2="702" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- App VM 4 → Postgres Primary -->
+  <line x1="740" y1="602" x2="390" y2="706" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Postgres Primary → Postgres Secondary (replication) -->
+  <line x1="365" y1="720" x2="535" y2="720" stroke="#555" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arr)"/>
+
+  <!-- ══════════════════════════════════════════
+       NODES
+       ══════════════════════════════════════════ -->
+
+  <!-- Internet -->
+  <circle cx="450" cy="52" r="42" fill="#1a1a2e" filter="url(#shadow)"/>
+  <text x="450" y="56" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">Internet</text>
+
+  <!-- Front Door -->
+  <circle cx="450" cy="178" r="52" fill="#0050b3" filter="url(#shadow)"/>
+  <text x="450" y="174" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">Azure</text>
+  <text x="450" y="190" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">Front Door</text>
+
+  <!-- Web VM 1 -->
+  <circle cx="222" cy="320" r="46" fill="#0078d4" filter="url(#shadow)"/>
+  <text x="222" y="316" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">Web</text>
+  <text x="222" y="330" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">VM 1</text>
+
+  <!-- Web VM 2 -->
+  <circle cx="678" cy="320" r="46" fill="#0078d4" filter="url(#shadow)"/>
+  <text x="678" y="316" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">Web</text>
+  <text x="678" y="330" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">VM 2</text>
+
+  <!-- App LB -->
+  <circle cx="450" cy="450" r="46" fill="#107c10" filter="url(#shadow)"/>
+  <text x="450" y="446" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">App</text>
+  <text x="450" y="460" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">Load Balancer</text>
+
+  <!-- App VM 1 -->
+  <circle cx="150" cy="580" r="46" fill="#107c10" filter="url(#shadow)"/>
+  <text x="150" y="576" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">App</text>
+  <text x="150" y="590" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">VM 1</text>
+
+  <!-- App VM 2 -->
+  <circle cx="340" cy="580" r="46" fill="#107c10" filter="url(#shadow)"/>
+  <text x="340" y="576" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">App</text>
+  <text x="340" y="590" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">VM 2</text>
+
+  <!-- App VM 3 -->
+  <circle cx="560" cy="580" r="46" fill="#107c10" filter="url(#shadow)"/>
+  <text x="560" y="576" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">App</text>
+  <text x="560" y="590" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">VM 3</text>
+
+  <!-- App VM 4 -->
+  <circle cx="750" cy="580" r="46" fill="#107c10" filter="url(#shadow)"/>
+  <text x="750" y="576" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">App</text>
+  <text x="750" y="590" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">VM 4</text>
+
+  <!-- Postgres Primary -->
+  <circle cx="330" cy="720" r="50" fill="#7c3aed" filter="url(#shadow)"/>
+  <text x="330" y="712" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">Postgres</text>
+  <text x="330" y="726" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">Primary</text>
+  <text x="330" y="740" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="#e9d5ff">Zone 1</text>
+
+  <!-- Postgres Secondary -->
+  <circle cx="570" cy="720" r="50" fill="#5b21b6" filter="url(#shadow)"/>
+  <text x="570" y="712" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">Postgres</text>
+  <text x="570" y="726" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="bold" fill="white">Secondary</text>
+  <text x="570" y="740" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="#e9d5ff">Zone 2</text>
+
+  <!-- ══ LEGEND ══ -->
+  <rect x="690" y="690" width="185" height="72" rx="8" fill="white" stroke="#ccc" stroke-width="1"/>
+  <text x="782" y="708" text-anchor="middle" font-size="10" font-weight="bold" fill="#333">Legend</text>
+  <line x1="706" y1="726" x2="740" y2="726" stroke="#555" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="748" y="730" font-size="10" fill="#333">Traffic flow</text>
+  <line x1="706" y1="748" x2="740" y2="748" stroke="#555" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arr)"/>
+  <text x="748" y="752" font-size="10" fill="#333">Replication</text>
+
+</svg>

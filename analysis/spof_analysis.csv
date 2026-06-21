@@ -1,0 +1,4 @@
+spof,failure_mode,impacted_node_count,impacted_nodes,affected_total_bytes
+Azure Front Door,Transit dependency,8,"flowdemo-app1, flowdemo-app2, flowdemo-app3, flowdemo-app4, flowdemo-applb, flowdemo-pgprimary, flowdemo-web1, flowdemo-web2",20283892.0
+flowdemo-applb,Transit dependency,5,"flowdemo-app1, flowdemo-app2, flowdemo-app3, flowdemo-app4, flowdemo-pgprimary",475328.0
+flowdemo-pgprimary,Terminal data sink,4,"flowdemo-app1, flowdemo-app2, flowdemo-app3, flowdemo-app4",258306.0

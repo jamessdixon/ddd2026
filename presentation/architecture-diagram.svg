@@ -1,0 +1,159 @@
+<svg viewBox="0 0 960 780" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="960" height="780" fill="#f3f6fb"/>
+
+  <!-- Title -->
+  <text x="480" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#1a1a2e">Azure VNet Flow Logs Demo — N-Tier Architecture</text>
+
+  <!-- ── INTERNET ── -->
+  <rect x="370" y="58" width="220" height="40" rx="10" fill="#1a1a2e"/>
+  <text x="480" y="83" text-anchor="middle" font-size="13" font-weight="bold" fill="white">🌐  Internet / Users</text>
+
+  <!-- Arrow: Internet → Front Door -->
+  <line x1="480" y1="98" x2="480" y2="128" stroke="#1a1a2e" stroke-width="2" marker-end="url(#arr-dark)"/>
+  <text x="492" y="118" font-size="10" fill="#555">HTTPS</text>
+
+  <!-- ── AZURE FRONT DOOR ── -->
+  <rect x="290" y="130" width="380" height="48" rx="10" fill="#0050b3"/>
+  <text x="480" y="151" text-anchor="middle" font-size="13" font-weight="bold" fill="white">⚡  Azure Front Door  (Standard)</text>
+  <text x="480" y="169" text-anchor="middle" font-size="10" fill="#a8c8ff">L7 proxy · round-robin · health probe HEAD /health :30s</text>
+
+  <!-- Note: AFD backend IPs -->
+  <rect x="700" y="133" width="240" height="42" rx="6" fill="#e6f0ff" stroke="#0050b3" stroke-width="1"/>
+  <text x="820" y="150" text-anchor="middle" font-size="10" fill="#0050b3" font-weight="bold">AzureFrontDoor.Backend IPs</text>
+  <text x="820" y="164" text-anchor="middle" font-size="10" fill="#0050b3">visible hop in NTANetAnalytics</text>
+  <line x1="700" y1="154" x2="670" y2="154" stroke="#0050b3" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#arr-blue)"/>
+
+  <!-- Arrows: AFD → Web VMs -->
+  <line x1="390" y1="178" x2="260" y2="232" stroke="#0050b3" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <line x1="570" y1="178" x2="700" y2="232" stroke="#0050b3" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <text x="290" y="215" font-size="10" fill="#0050b3">HTTP :80</text>
+  <text x="618" y="215" font-size="10" fill="#0050b3">HTTP :80</text>
+
+  <!-- ── WEB TIER BOX ── -->
+  <rect x="60" y="228" width="840" height="108" rx="10" fill="#e8f4fd" stroke="#0078d4" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="480" y="246" text-anchor="middle" font-size="11" fill="#0078d4" font-weight="bold">Web Tier — web-subnet 10.0.1.0/24  (NSG: Allow AzureFrontDoor.Backend → :80, RDP :3389)</text>
+
+  <!-- Web VM 1 -->
+  <rect x="90" y="254" width="300" height="68" rx="8" fill="#0078d4"/>
+  <text x="240" y="274" text-anchor="middle" font-size="13" font-weight="bold" fill="white">🖥  Web VM 1</text>
+  <text x="240" y="291" text-anchor="middle" font-size="10" fill="#cce5ff">Windows Server 2022 · IIS · Zone 1</text>
+  <text x="240" y="307" text-anchor="middle" font-size="10" fill="#cce5ff">Hello World + calls App tier · RDP enabled</text>
+
+  <!-- Web VM 2 -->
+  <rect x="570" y="254" width="300" height="68" rx="8" fill="#0078d4"/>
+  <text x="720" y="274" text-anchor="middle" font-size="13" font-weight="bold" fill="white">🖥  Web VM 2</text>
+  <text x="720" y="291" text-anchor="middle" font-size="10" fill="#cce5ff">Windows Server 2022 · IIS · Zone 2</text>
+  <text x="720" y="307" text-anchor="middle" font-size="10" fill="#cce5ff">Hello World + calls App tier · RDP enabled</text>
+
+  <!-- Arrows: Web VMs → App LB -->
+  <line x1="300" y1="322" x2="430" y2="390" stroke="#107c10" stroke-width="2" marker-end="url(#arr-green)"/>
+  <line x1="660" y1="322" x2="530" y2="390" stroke="#107c10" stroke-width="2" marker-end="url(#arr-green)"/>
+  <text x="330" y="362" font-size="10" fill="#107c10">HTTP :8080</text>
+  <text x="548" y="362" font-size="10" fill="#107c10">HTTP :8080</text>
+
+  <!-- ── APP LB VM ── -->
+  <rect x="330" y="390" width="300" height="48" rx="10" fill="#107c10"/>
+  <text x="480" y="410" text-anchor="middle" font-size="13" font-weight="bold" fill="white">⚖️  App Load Balancer VM</text>
+  <text x="480" y="428" text-anchor="middle" font-size="10" fill="#c8f7c5">Ubuntu 22.04 · nginx least_conn · 10.0.2.4 · Zone 1</text>
+
+  <!-- Arrows: App LB → App VMs -->
+  <line x1="390" y1="438" x2="168" y2="508" stroke="#107c10" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <line x1="430" y1="438" x2="356" y2="508" stroke="#107c10" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <line x1="530" y1="438" x2="604" y2="508" stroke="#107c10" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <line x1="570" y1="438" x2="792" y2="508" stroke="#107c10" stroke-width="1.5" marker-end="url(#arr-green)"/>
+
+  <!-- ── APP TIER BOX ── -->
+  <rect x="60" y="500" width="840" height="112" rx="10" fill="#e8fde8" stroke="#107c10" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="480" y="518" text-anchor="middle" font-size="11" fill="#107c10" font-weight="bold">App Tier — app-subnet 10.0.2.0/24  (NSG: Allow 10.0.1.0/24 → :8080)</text>
+
+  <!-- App VM 1 -->
+  <rect x="76" y="526" width="184" height="72" rx="8" fill="#107c10"/>
+  <text x="168" y="546" text-anchor="middle" font-size="12" font-weight="bold" fill="white">App VM 1</text>
+  <text x="168" y="562" text-anchor="middle" font-size="9" fill="#c8f7c5">10.0.2.10 · Zone 1</text>
+  <text x="168" y="576" text-anchor="middle" font-size="9" fill="#c8f7c5">Node.js REST :8080</text>
+  <text x="168" y="590" text-anchor="middle" font-size="9" fill="#c8f7c5">GET /api/task → 1s → GUID</text>
+
+  <!-- App VM 2 -->
+  <rect x="276" y="526" width="184" height="72" rx="8" fill="#107c10"/>
+  <text x="368" y="546" text-anchor="middle" font-size="12" font-weight="bold" fill="white">App VM 2</text>
+  <text x="368" y="562" text-anchor="middle" font-size="9" fill="#c8f7c5">10.0.2.11 · Zone 2</text>
+  <text x="368" y="576" text-anchor="middle" font-size="9" fill="#c8f7c5">Node.js REST :8080</text>
+  <text x="368" y="590" text-anchor="middle" font-size="9" fill="#c8f7c5">GET /api/task → 1s → GUID</text>
+
+  <!-- App VM 3 -->
+  <rect x="500" y="526" width="184" height="72" rx="8" fill="#107c10"/>
+  <text x="592" y="546" text-anchor="middle" font-size="12" font-weight="bold" fill="white">App VM 3</text>
+  <text x="592" y="562" text-anchor="middle" font-size="9" fill="#c8f7c5">10.0.2.12 · Zone 1</text>
+  <text x="592" y="576" text-anchor="middle" font-size="9" fill="#c8f7c5">Node.js REST :8080</text>
+  <text x="592" y="590" text-anchor="middle" font-size="9" fill="#c8f7c5">GET /api/task → 1s → GUID</text>
+
+  <!-- App VM 4 -->
+  <rect x="700" y="526" width="184" height="72" rx="8" fill="#107c10"/>
+  <text x="792" y="546" text-anchor="middle" font-size="12" font-weight="bold" fill="white">App VM 4</text>
+  <text x="792" y="562" text-anchor="middle" font-size="9" fill="#c8f7c5">10.0.2.13 · Zone 2</text>
+  <text x="792" y="576" text-anchor="middle" font-size="9" fill="#c8f7c5">Node.js REST :8080</text>
+  <text x="792" y="590" text-anchor="middle" font-size="9" fill="#c8f7c5">GET /api/task → 1s → GUID</text>
+
+  <!-- Arrows: App VMs → DB -->
+  <line x1="480" y1="612" x2="480" y2="648" stroke="#7c3aed" stroke-width="2" marker-end="url(#arr-purple)"/>
+  <text x="492" y="636" font-size="10" fill="#7c3aed">:5432</text>
+
+  <!-- ── DB TIER BOX ── -->
+  <rect x="130" y="650" width="700" height="100" rx="10" fill="#f3eeff" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="480" y="668" text-anchor="middle" font-size="11" fill="#7c3aed" font-weight="bold">Database Tier — db-subnet 10.0.3.0/24  (NSG: Allow 10.0.2.0/24 → :5432)</text>
+
+  <!-- Postgres Primary -->
+  <rect x="155" y="676" width="270" height="60" rx="8" fill="#7c3aed"/>
+  <text x="290" y="697" text-anchor="middle" font-size="12" font-weight="bold" fill="white">🐘  Postgres Primary</text>
+  <text x="290" y="713" text-anchor="middle" font-size="10" fill="#e9d5ff">10.0.3.4 · Zone 1 · Read / Write</text>
+  <text x="290" y="727" text-anchor="middle" font-size="10" fill="#e9d5ff">Streaming replication →</text>
+
+  <!-- Replication arrow -->
+  <line x1="425" y1="706" x2="535" y2="706" stroke="white" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-white)"/>
+
+  <!-- Postgres Secondary -->
+  <rect x="535" y="676" width="270" height="60" rx="8" fill="#5b21b6"/>
+  <text x="670" y="697" text-anchor="middle" font-size="12" font-weight="bold" fill="white">🐘  Postgres Secondary</text>
+  <text x="670" y="713" text-anchor="middle" font-size="10" fill="#e9d5ff">10.0.3.5 · Zone 2 · Standby</text>
+  <text x="670" y="727" text-anchor="middle" font-size="10" fill="#e9d5ff">WAL streaming replica</text>
+
+  <!-- ── FLOW LOG LEGEND ── -->
+  <rect x="0" y="650" width="124" height="100" rx="8" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+  <text x="62" y="668" text-anchor="middle" font-size="10" font-weight="bold" fill="#92400e">📊 VNet Flow Logs</text>
+  <text x="62" y="683" text-anchor="middle" font-size="9" fill="#92400e">All 4 NSGs</text>
+  <text x="62" y="697" text-anchor="middle" font-size="9" fill="#92400e">v2 · 10-min TA</text>
+  <text x="62" y="711" text-anchor="middle" font-size="9" fill="#92400e">→ Storage acct</text>
+  <text x="62" y="725" text-anchor="middle" font-size="9" fill="#92400e">→ NTANetAnalytics</text>
+  <text x="62" y="740" text-anchor="middle" font-size="9" fill="#92400e">(Log Analytics)</text>
+
+  <!-- ── NSG LEGEND ── -->
+  <rect x="836" y="650" width="124" height="100" rx="8" fill="#fde8e8" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="898" y="668" text-anchor="middle" font-size="10" font-weight="bold" fill="#7b0000">🛡 NSGs</text>
+  <text x="898" y="684" text-anchor="middle" font-size="9" fill="#7b0000">web-nsg</text>
+  <text x="898" y="698" text-anchor="middle" font-size="9" fill="#7b0000">app-nsg</text>
+  <text x="898" y="712" text-anchor="middle" font-size="9" fill="#7b0000">lb-nsg</text>
+  <text x="898" y="726" text-anchor="middle" font-size="9" fill="#7b0000">db-nsg</text>
+  <text x="898" y="740" text-anchor="middle" font-size="9" fill="#7b0000">Flow logs on all</text>
+
+  <!-- ── ARROW MARKERS ── -->
+  <defs>
+    <marker id="arr-dark" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#1a1a2e"/>
+    </marker>
+    <marker id="arr-blue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#0050b3"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#107c10"/>
+    </marker>
+    <marker id="arr-purple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arr-white" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="white"/>
+    </marker>
+  </defs>
+
+</svg>
